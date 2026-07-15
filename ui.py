@@ -39,12 +39,14 @@ if query:
     # User message display and save
     st.chat_message("user").write(query)
     st.session_state.messages.append({"role": "user", "content": query})
+
+    BACKEND_URL = "https://knograph-ai-1.onrender.com"
     
     with st.spinner("Thinking..."):
         try:
             headers = {'Content-Type': 'application/json'}
             response = requests.post(
-                "https://knograph-ai-1.onrender.com", 
+                BACKEND_URL, 
                 json={"query": query}, 
                 headers=headers,
                 timeout=45
