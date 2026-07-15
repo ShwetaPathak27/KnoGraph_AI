@@ -44,7 +44,7 @@ if query:
         try:
             headers = {'Content-Type': 'application/json'}
             response = requests.post(
-                "http://127.0.0.1:8000/chat", 
+                "https://knograph-ai-1.onrender.com", 
                 json={"query": query}, 
                 headers=headers,
                 timeout=45
