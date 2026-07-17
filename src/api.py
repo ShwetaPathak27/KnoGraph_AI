@@ -6,10 +6,6 @@ from langchain_core.messages import HumanMessage
 
 api = FastAPI(title="Voice Assistant API")
 
-@api.get("/")
-async def root():
-    return {"status": "online", "message": "Voice Assistant API is running"}
-
 # Request schema
 class ChatRequest(BaseModel):
     query: str
