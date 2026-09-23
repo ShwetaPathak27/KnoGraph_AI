@@ -20,7 +20,7 @@ KnoGraph AI is an advanced, agentic RAG (Retrieval-Augmented Generation) assista
 ## Tech Stack
 * **Frameworks:** FastAPI, LangGraph, LangChain, Streamlit.
 * **Data & Graph:** PostgreSQL, Neo4j, Chroma/Vector DB.
-* **LLM & AI:** Groq (llama-3.3-70b-versatile), Tavily Search API.
+* **LLM & AI:** Groq (openai/gpt-oss-120b), Tavily Search API.
 * **Voice:** Google Text-to-Speech (gTTS), SpeechRecognition.
 * **Storage:** RAM-based streaming for audio responses to optimize storage.
 
