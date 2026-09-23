@@ -18,7 +18,7 @@ load_dotenv()
 # max_results=3 and search_depth="advanced" for better search results
 search_tool = TavilySearchResults(max_results=3, search_depth="advanced") 
 tools = [search_tool]
-llm = ChatGroq(model="llama-3.3-70b-versatile", api_key=os.getenv("GROQ_API_KEY"))
+llm = ChatGroq(model="openai/gpt-oss-120b", api_key=os.getenv("GROQ_API_KEY"))
 llm_with_tools = llm.bind_tools(tools)
 
 # 3. State
