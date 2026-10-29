@@ -10,6 +10,8 @@ from langgraph.prebuilt import ToolNode, tools_condition
 from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from langchain_community.tools.tavily_search import TavilySearchResults 
+from langgraph.checkpoint.memory import MemorySaver 
+
 
 # 1. Setup
 load_dotenv()
@@ -47,6 +49,7 @@ def model_node(state):
         return {"messages": [AIMessage(content="I am having trouble accessing my search tools, but I'm here to help with other queries!")]}
 
 # 5. Graph
+checkpointer = MemorySaver()
 workflow = StateGraph(AgentState)
 workflow.add_node("model", model_node)
 workflow.add_node("tools", ToolNode(tools))
@@ -54,7 +57,7 @@ workflow.set_entry_point("model")
 workflow.add_conditional_edges("model", tools_condition)
 workflow.add_edge("tools", "model")
 
-app = workflow.compile()
+app = workflow.compile(checkpointer=checkpointer)
 
 # 6. Test
 if __name__ == "__main__":
