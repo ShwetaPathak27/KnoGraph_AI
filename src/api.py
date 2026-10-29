@@ -10,11 +10,13 @@ api = FastAPI(title="Voice Assistant API")
 class ChatRequest(BaseModel):
     query: str
 
+thread_id = '1'
 @api.post("/chat")
 async def chat_endpoint(request: ChatRequest):
     try:
+        config = {'configurable': {'thread_id': thread_id}}
         # LangGraph invoke
-        result = app.invoke({"messages": [HumanMessage(content=request.query)]})
+        result = app.invoke({"messages": [HumanMessage(content=request.query)]}, config=config)
         
         # Safely extract content
         if "messages" in result and result["messages"]:
